@@ -186,7 +186,23 @@ class LinkedList<T> {
             console.log("Not found.");
             return;
         }
+    }
 
+    countNodes(){
+        if(!this.head){
+            console.log("List has 0 nodes.")
+            return;
+        }
+
+        let current = this.head
+        let count = 1; // since we have this.head
+        
+        while(current.next){
+            count++
+            current = current.next
+        }
+
+        console.log(`Nodes count: ${count}.`);
     }
 }
 
@@ -198,6 +214,6 @@ list.add(3)
 list.add(4)
 list.add(5)
 
-list.search(3);
-
 list.display()
+list.search(3);
+list.countNodes();

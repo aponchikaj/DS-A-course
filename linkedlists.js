@@ -138,19 +138,22 @@ var LinkedList = /** @class */ (function () {
         newNode.next = current.next;
         current.next = newNode;
     };
+    // so this is search function which takes value as parameter and its type is type of linkedList.
+    // first is if statement to check if head exists and is valid list.
+    // then we make variable named current and assign it this.head 
+    // then we have while loop while current doesnt equal to null we go to loop and checking if current.data equals to value
+    // if it equals we return message
+    // and below if statement we change node
+    //after while loop we check if current is null and if current == null then our value wasn't found
     LinkedList.prototype.search = function (value) {
         if (!this.head) {
             console.log("Invalid list.");
             return;
         }
         var current = this.head;
-        if (current.data == value) {
-            console.log("".concat(current.data, " found. data: ").concat(current));
-            return true;
-        }
         while (current !== null) {
             if (current.data === value) {
-                console.log("".concat(current.data, " found. next: ").concat(current.next));
+                console.log("".concat(current.data, " found."));
                 return;
             }
             current = current.next;
@@ -160,6 +163,19 @@ var LinkedList = /** @class */ (function () {
             return;
         }
     };
+    LinkedList.prototype.countNodes = function () {
+        if (!this.head) {
+            console.log("List has 0 nodes.");
+            return;
+        }
+        var current = this.head;
+        var count = 1; // since we have this.head
+        while (current.next) {
+            count++;
+            current = current.next;
+        }
+        console.log("Nodes count: ".concat(count, "."));
+    };
     return LinkedList;
 }());
 var list = new LinkedList();
@@ -168,5 +184,6 @@ list.add(2);
 list.add(3);
 list.add(4);
 list.add(5);
-list.search(3);
 list.display();
+list.search(3);
+list.countNodes();
