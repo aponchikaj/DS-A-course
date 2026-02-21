@@ -45,6 +45,65 @@ var LinkedList = /** @class */ (function () {
         }
         console.log("Displayed all data.");
     };
+    // delete by value. parameter value and its type is linkedlists type.
+    // check if we dont have head (starting node) then console log list is empty
+    // if head data is equaled to value then we change head to head.next and its gettin deleted
+    // then we make current variable which is equaled to head and make while loop
+    // while current.next doesnt equal to null then check if current next.data is equaled to value
+    // if it is then current.next = current.next.next and return
+    // and at the end we make current=current.next to get to next node
+    LinkedList.prototype.deleteByVal = function (value) {
+        if (!this.head) {
+            console.log("List is empty.");
+            return;
+        }
+        if (this.head.data == value) {
+            this.head = this.head.next;
+            return;
+        }
+        var current = this.head;
+        while (current.next !== null) {
+            if (current.next.data == value) {
+                current.next = current.next.next;
+                return;
+            }
+            current = current.next;
+        }
+    };
+    // delete by index method in linkedlist
+    // parameter - index and its type is number.
+    // first check if index and this.head is valid. if its not return error or something.
+    // second check if index equals to 0 if it does then this.head = this.head.next so this.head is gettig deleted.
+    // then lets make 3 variables current;previous;currentIndex;
+    // currents type is ListNode<T> or null and equals to this.head
+    // previous type is ListNode<T> or null and equals to null
+    // currentIndex's type is number and equals to 0
+    // then make while loop while current doesnt equal to null and currentIndex is less then index.
+    // then check if current equals to null or previous equals to null console.log("index out of bounds")
+    // and last previous.next = current.next
+    LinkedList.prototype.deleteByIndex = function (index) {
+        if (index < 0 || !this.head) {
+            console.log("Invalid index or head.");
+            return;
+        }
+        if (index == 0) {
+            this.head = this.head.next;
+            return;
+        }
+        var current = this.head;
+        var previous = null;
+        var currentIndex = 0;
+        while (current !== null && currentIndex < index) {
+            previous = current;
+            current = current.next;
+            currentIndex++;
+        }
+        if (current == null || previous == null) {
+            console.log("Index out of bounds.");
+            return;
+        }
+        previous.next = current.next;
+    };
     return LinkedList;
 }());
 var list = new LinkedList();

@@ -108,13 +108,15 @@ class LinkedList<T> {
             current = current.next;
             currentIndex++
         }
-        
+
         if(current == null || previous == null){
             console.log("Index out of bounds.")
             return;
         }
         previous.next = current.next;
     }
+
+    
 }
 
 const list = new LinkedList<number>()
