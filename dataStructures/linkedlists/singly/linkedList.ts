@@ -268,6 +268,7 @@ class LinkedList<T> {
 
         return;
     }
+
 }
 
 const list = new LinkedList<number>()
