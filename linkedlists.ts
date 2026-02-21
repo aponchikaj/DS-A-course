@@ -241,17 +241,30 @@ class LinkedList<T> {
 
         console.log("Last node: "+current.data);
     }
+
+    // this is function fromArr.
+    // so this takes array as parameter and we use for loop to get each data from array
+    // then we use add function from above and add it to list and then use display function to get list
+    fromArr(arr: T[]){
+        for(let i =0;i<arr.length;i++){
+            this.add(arr[i]);
+        }
+
+        this.display();
+    }
 }
 
 const list = new LinkedList<number>()
 
-list.add(1)
-list.add(2)
-list.add(3)
-list.add(4)
-list.add(5)
+// list.add(1)
+// list.add(2)
+// list.add(3)
+// list.add(4)
+// list.add(5)
 
-list.display()
-list.search(3);
-list.countNodes();
-list.getLast()
+list.fromArr([1,2,3,4,5,6,7,8,9,10]);
+
+// list.display()
+// list.search(3);
+// list.countNodes();
+// list.getLast()
