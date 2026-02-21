@@ -61,4 +61,40 @@ class DoublyLinkedList<T> {
 
         this.size++
     }
+
+    // display forward function from head to tail
+    // we mae current variable and assign this.head to it
+    // after we make array with T[] type and its blank
+    // then we use while loop and check while current is valid 
+    // we push current.data to result and get to next node 
+    // after we return result
+    displayForward(){
+        let current = this.head;
+        const result: T[] = []
+
+        while(current){
+            result.push(current.data)
+            current = current.next
+        }
+
+        console.log(result)
+    }
+
+    // display backward function from tail to head
+    // we make current variable assign tail to it
+    // then result array which is blank
+    // after we make while loop and while current is valid and isnot null
+    // we push current.data to result and get to PERVIOUS node
+    // and last we return result
+    displayBackward(){
+        let current = this.tail;
+        const result: T[] = []
+
+        while(current){
+            result.push(current.data)
+            current = current.prev
+        }
+
+        console.log(result)
+    }
 }
