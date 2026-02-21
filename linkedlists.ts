@@ -11,6 +11,7 @@ class ListNode<T> {
     }
 }
 
+//
 class LinkedList<T> {
     // starting point.
     head: ListNode<T> | null = null;
@@ -188,6 +189,11 @@ class LinkedList<T> {
         }
     }
 
+    // if we dont have head we return error.
+    // then we make 2 variables current and count 
+    // count is 1 because we already have head node and current variable has this.head
+    // while current.next is valid count++ and current is getting to next node
+    // then we return nodes count.
     countNodes(){
         if(!this.head){
             console.log("List has 0 nodes.")
@@ -204,6 +210,37 @@ class LinkedList<T> {
 
         console.log(`Nodes count: ${count}.`);
     }
+
+    // get head function gives us head node if we have it THIS WAS TASK !
+    getHead(){
+        if(!this.head){
+            console.log('Head not found.');
+            return;
+        }
+
+        console.log("First node: "+this.head.data)
+    }
+
+    // get last function gives us last node
+    // if we dont have head we return invalid list.
+    // then we have variable current and current equals this.head
+    // after we use while loop while current.next is valid we go from one node to another till we get to null
+    // after we have current which is last.
+    // and we return that last node.
+    getLast(){
+        if(!this.head){
+            console.log("Invalid list.")
+            return;
+        }
+
+        let current = this.head;
+
+        while(current.next){
+            current = current.next!
+        }
+
+        console.log("Last node: "+current.data);
+    }
 }
 
 const list = new LinkedList<number>()
@@ -217,3 +254,4 @@ list.add(5)
 list.display()
 list.search(3);
 list.countNodes();
+list.getLast()
