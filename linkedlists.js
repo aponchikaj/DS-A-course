@@ -216,16 +216,31 @@ var LinkedList = /** @class */ (function () {
         }
         this.display();
     };
+    // this function removes duplicate nodes that are next to each other.
+    LinkedList.prototype.removeDuplicates = function () {
+        if (!this.head)
+            return;
+        var current = this.head;
+        while (current.next) {
+            if (current.data == current.next.data) {
+                current.next = current.next.next;
+            }
+            current = current.next;
+        }
+        return;
+    };
     return LinkedList;
 }());
 var list = new LinkedList();
-// list.add(1)
-// list.add(2)
-// list.add(3)
-// list.add(4)
-// list.add(5)
-list.fromArr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-// list.display()
+list.add(1);
+list.add(2);
+list.add(2);
+list.add(3);
+list.add(4);
+list.add(4);
+list.add(5);
+list.removeDuplicates();
+list.display();
 // list.search(3);
 // list.countNodes();
 // list.getLast()
