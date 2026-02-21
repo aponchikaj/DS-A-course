@@ -157,6 +157,37 @@ class LinkedList<T> {
         newNode.next = current.next;
         current.next = newNode
     }
+
+
+    // so this is search function which takes value as parameter and its type is type of linkedList.
+    // first is if statement to check if head exists and is valid list.
+    // then we make variable named current and assign it this.head 
+    // then we have while loop while current doesnt equal to null we go to loop and checking if current.data equals to value
+    // if it equals we return message
+    // and below if statement we change node
+    //after while loop we check if current is null and if current == null then our value wasn't found
+    search(value:T){
+        if(!this.head) {
+            console.log("Invalid list.")
+            return;
+        }
+
+        let current = this.head;
+
+        while(current !== null){
+            if(current.data === value){
+                console.log(`${current.data} found.`);
+                return;
+            }
+            current = current.next!;
+        }
+
+        if(current == null) {
+            console.log("Not found.");
+            return;
+        }
+
+    }
 }
 
 const list = new LinkedList<number>()
@@ -166,5 +197,7 @@ list.add(2)
 list.add(3)
 list.add(4)
 list.add(5)
+
+list.search(3);
 
 list.display()

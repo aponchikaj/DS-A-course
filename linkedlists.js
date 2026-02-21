@@ -104,6 +104,62 @@ var LinkedList = /** @class */ (function () {
         }
         previous.next = current.next;
     };
+    // so insertat function. parameters data and index data has linkedList's type and index is number
+    // if index is less then 0 then its invalid index and return error.
+    // then create new node - new ListNode(data) 
+    // if index is 0 then newNode.next = this.head and this.head is changed to newNode
+    // then we make 2 variables current and count. count is 0 and current is head.
+    // then we are taking while loop to get indexed node
+    // while current isnot equaled to null and count is less then index - 1
+    // current = current.next and count = 0
+    // then check if current is equaled to null if it is return "out of bounds"
+    // and last handshake. newNode.next=current.next and current.next = newNode.
+    LinkedList.prototype.insertAt = function (data, index) {
+        if (index < 0) {
+            console.log("Invalid index.");
+            return;
+        }
+        var newNode = new ListNode(data);
+        if (index == 0) {
+            newNode.next = this.head;
+            this.head = newNode;
+            return;
+        }
+        var current = this.head;
+        var count = 0;
+        while (current !== null && count < index - 1) {
+            current = current.next;
+            count++;
+        }
+        if (current == null) {
+            console.log("Out of bounds.");
+            return;
+        }
+        newNode.next = current.next;
+        current.next = newNode;
+    };
+    LinkedList.prototype.search = function (value) {
+        if (!this.head) {
+            console.log("Invalid list.");
+            return;
+        }
+        var current = this.head;
+        if (current.data == value) {
+            console.log("".concat(current.data, " found. data: ").concat(current));
+            return true;
+        }
+        while (current !== null) {
+            if (current.data === value) {
+                console.log("".concat(current.data, " found. next: ").concat(current.next));
+                return;
+            }
+            current = current.next;
+        }
+        if (current == null) {
+            console.log("Not found.");
+            return;
+        }
+    };
     return LinkedList;
 }());
 var list = new LinkedList();
@@ -112,4 +168,5 @@ list.add(2);
 list.add(3);
 list.add(4);
 list.add(5);
+list.search(3);
 list.display();
