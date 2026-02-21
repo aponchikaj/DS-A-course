@@ -2,9 +2,9 @@
 // structure of that train is like : node(data,next)->node(data,next)... and so on...
 // next is pointing to next node and data has the data that we added to that node.
 
-class ListNode<T> {
+class SinglyListNode<T> {
     data:T
-    next: ListNode<T> | null = null
+    next: SinglyListNode<T> | null = null
 
     constructor(data:T){
         this.data = data
@@ -12,9 +12,9 @@ class ListNode<T> {
 }
 
 //
-class LinkedList<T> {
+class SinglyLinkedList<T> {
     // starting point.
-    head: ListNode<T> | null = null;
+    head: SinglyListNode<T> | null = null;
 
     // this is add function to add new nodes to list
     // we pass data as parameter and its type is T - T is type of LinkedList
@@ -22,7 +22,7 @@ class LinkedList<T> {
     // if we dont have starting point of list (head) then we assign head the newNode so newNode is gonna be starting node
     // but if we have head available we start from head and get next to each node till we get to null and then we assign current.next newNode and thats how we add new node to list.
     add(data:T){
-        const newNode = new ListNode(data);
+        const newNode = new SinglyListNode(data);
         if(!this.head){
             this.head = newNode
         }else{
@@ -100,8 +100,8 @@ class LinkedList<T> {
             return;
         }
 
-        let current: ListNode<T> | null = this.head;
-        let previous: ListNode<T> | null = null;
+        let current: SinglyListNode<T> | null = this.head;
+        let previous: SinglyListNode<T> | null = null;
         let currentIndex = 0;
 
         while(current !== null && currentIndex < index){
@@ -134,7 +134,7 @@ class LinkedList<T> {
             return;
         }
 
-        const newNode = new ListNode(data);
+        const newNode = new SinglyListNode(data);
 
         if(index == 0){
             newNode.next = this.head;
@@ -271,7 +271,7 @@ class LinkedList<T> {
 
 }
 
-const list = new LinkedList<number>()
+const list = new SinglyLinkedList<number>()
 
 list.add(1)
 list.add(2)
