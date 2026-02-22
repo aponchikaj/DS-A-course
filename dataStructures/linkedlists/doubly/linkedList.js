@@ -86,5 +86,19 @@ var DoublyLinkedList = /** @class */ (function () {
         }
         console.log(result);
     };
+    DoublyLinkedList.prototype.removeFromFront = function () {
+        if (!this.head)
+            return null;
+        var removedData = this.head;
+        this.head = this.head.next;
+        if (this.head) {
+            this.head = null;
+        }
+        else {
+            this.tail = null;
+        }
+        this.size--;
+        this.displayForward();
+    };
     return DoublyLinkedList;
 }());

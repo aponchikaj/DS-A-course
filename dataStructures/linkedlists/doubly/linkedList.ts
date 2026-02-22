@@ -97,4 +97,37 @@ class DoublyLinkedList<T> {
 
         console.log(result)
     }
+
+    // remove from front function.
+    // gets this.head to next node and if head is valid after and isnt null then in if statement we make 
+    // head.perv to null to delete that node
+    // if this.head is not valid then tail = null and list is empty then.
+    removeFromFront(){
+        if(!this.head) return null;
+        this.head = this.head.next
+        if(this.head){
+            this.head.prev = null
+        }else{
+            this.tail = null
+        }
+        this.size--
+        this.displayForward();
+    }
+
+    //remove from back is same as removefromfront but instead of head we use tail
+    // tail goes to its back node and if  that can be done then tail.next = null to delete
+    // if that is invalid operation then head=null because list is empty then
+    // and size --
+    removeFromBack(){
+        if(!this.tail) return null;
+        this.tail = this.tail.prev
+        if(this.tail){
+            this.tail.next = null
+        }else{
+            this.head = null
+        }
+        this.size--
+        this.displayForward()
+    }
+
 }
