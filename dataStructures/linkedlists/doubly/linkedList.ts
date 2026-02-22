@@ -191,7 +191,7 @@ class DoublyLinkedList<T> {
         let current = this.head;
         while(current !== null){
             if(current.data == value){
-                return true
+                return current
             }
             current = current.next!
         }
@@ -199,5 +199,34 @@ class DoublyLinkedList<T> {
         return null;
     }
 
+    // remove by value function. takes value:T as parameter.
+    // if we dont have head we return null
+    // search value if it wasnt found we return false
+    // if search equals head then we use removefromFront function
+    // if search equals tail then we use removeFromBack function
+    // then we make new variables previous and next which is getting us search.prev and search.next
+    // then we change previous.next to next 
+    // and next.prev to previous
+    // size--
+    // return true.
+    removeByValue(value:T){
+        if(!this.head) return null;
 
+        const search = this.search(value)
+        if(!search){
+            return false
+        }
+
+        if(search == this.head) return this.removeFromFront();
+        if(search == this.tail) return this.removeFromBack();
+
+        const previous = search.prev
+        const next = search.next
+
+        previous!.next = next;
+        next!.prev = previous
+
+        this.size--
+        return true;
+    }
 }
