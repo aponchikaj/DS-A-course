@@ -176,4 +176,28 @@ class DoublyLinkedList<T> {
         this.size++
         return true;
     }
+
+    // search function.
+    // we take value:T as parameter
+    // then we make current variable that equals this.head
+    // while current doesnt equal to null then go to loop
+    // in loop check if current.data == value
+    // if it does then return true
+    // out from if statement we get to other node
+    // if nothing found we return null
+    search(value:T){
+        if(!this.head) return null;
+
+        let current = this.head;
+        while(current !== null){
+            if(current.data == value){
+                return true
+            }
+            current = current.next!
+        }
+
+        return null;
+    }
+
+
 }
