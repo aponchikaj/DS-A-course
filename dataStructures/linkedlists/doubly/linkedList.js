@@ -86,19 +86,132 @@ var DoublyLinkedList = /** @class */ (function () {
         }
         console.log(result);
     };
+    // remove from front function.
+    // gets this.head to next node and if head is valid after and isnt null then in if statement we make 
+    // head.perv to null to delete that node
+    // if this.head is not valid then tail = null and list is empty then.
     DoublyLinkedList.prototype.removeFromFront = function () {
         if (!this.head)
             return null;
-        var removedData = this.head;
         this.head = this.head.next;
         if (this.head) {
-            this.head = null;
+            this.head.prev = null;
         }
         else {
             this.tail = null;
         }
         this.size--;
         this.displayForward();
+    };
+    //remove from back is same as removefromfront but instead of head we use tail
+    // tail goes to its back node and if  that can be done then tail.next = null to delete
+    // if that is invalid operation then head=null because list is empty then
+    // and size --
+    DoublyLinkedList.prototype.removeFromBack = function () {
+        if (!this.tail)
+            return null;
+        this.tail = this.tail.prev;
+        if (this.tail) {
+            this.tail.next = null;
+        }
+        else {
+            this.head = null;
+        }
+        this.size--;
+        this.displayForward();
+    };
+    // get node with index.
+    // if index is more than or equals to list or index is less then 0 size then return null
+    // create variable current = head and after we have for loop
+    // while i is less then index i ++
+    // and current = current.next
+    // and return current
+    DoublyLinkedList.prototype.getAtIndex = function (index) {
+        if (index < 0 || index >= this.size)
+            return null;
+        var current = this.head;
+        for (var i = 0; i < index; i++) {
+            current = current.next;
+        }
+        console.log(current);
+        return current;
+    };
+    // insertAt function takes index:number and data:T parameters
+    // check index if its valid > size or less thn 0 return null
+    // check index if it is 0 then we can use addToStart function 
+    // check index if it is sizeof list then we use addToEnd function
+    // then we make newNode 
+    // and we get before node where we use getAtIndex function index-1
+    // and after node is beforenode.next
+    // then newNode.prev = beforeNode
+    // newNode.next = afterNode
+    // and beforeNode.next = newNode
+    // afterNode.perv = newNode
+    // and size++ 
+    DoublyLinkedList.prototype.insertAt = function (index, data) {
+        if (index < 0 || index > this.size)
+            return null;
+        if (index == 0)
+            this.addToStart(data);
+        if (index == this.size)
+            this.addToEnd(data);
+        var newNode = new DoublyListNode(data);
+        var beforeNode = this.getAtIndex(index - 1);
+        var afterNode = beforeNode.next;
+        newNode.prev = beforeNode;
+        newNode.next = afterNode;
+        beforeNode.next = newNode;
+        afterNode.prev = newNode;
+        this.size++;
+        return true;
+    };
+    // search function.
+    // we take value:T as parameter
+    // then we make current variable that equals this.head
+    // while current doesnt equal to null then go to loop
+    // in loop check if current.data == value
+    // if it does then return true
+    // out from if statement we get to other node
+    // if nothing found we return null
+    DoublyLinkedList.prototype.search = function (value) {
+        if (!this.head)
+            return null;
+        var current = this.head;
+        while (current !== null) {
+            if (current.data == value) {
+                return current;
+            }
+            current = current.next;
+        }
+        return null;
+    };
+    // remove by value function. takes value:T as parameter.
+    // if we dont have head we return null
+    // search value if it wasnt found we return false
+    // if search equals head then we use removefromFront function
+    // if search equals tail then we use removeFromBack function
+    // then we make new variables previous and next which is getting us search.prev and search.next
+    // then we change previous.next to next 
+    // and next.prev to previous
+    // size--
+    // return true.
+    DoublyLinkedList.prototype.removeByValue = function (value) {
+        if (!this.head)
+            return null;
+        var search = this.search(value);
+        if (!search) {
+            return false;
+        }
+        if (search == this.head)
+            return this.removeFromFront();
+        if (search == this.tail)
+            return this.removeFromBack();
+        var previous = search.prev;
+        var next = search.next;
+        previous.next = next;
+        next.prev = previous;
+        this.size--;
+        return true;
     };
     return DoublyLinkedList;
 }());
