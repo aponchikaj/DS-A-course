@@ -130,4 +130,50 @@ class DoublyLinkedList<T> {
         this.displayForward()
     }
 
+    // get node with index.
+    // if index is more than or equals to list or index is less then 0 size then return null
+    // create variable current = head and after we have for loop
+    // while i is less then index i ++
+    // and current = current.next
+    // and return current
+    getAtIndex(index:number){
+        if(index <0 || index >= this.size) return null;
+        let current = this.head
+        for(let i=0;i<index;i++){
+            current = current!.next;
+        }
+
+        console.log(current)
+        return current;
+    }
+
+    // insertAt function takes index:number and data:T parameters
+    // check index if its valid > size or less thn 0 return null
+    // check index if it is 0 then we can use addToStart function 
+    // check index if it is sizeof list then we use addToEnd function
+    // then we make newNode 
+    // and we get before node where we use getAtIndex function index-1
+    // and after node is beforenode.next
+    // then newNode.prev = beforeNode
+    // newNode.next = afterNode
+    // and beforeNode.next = newNode
+    // afterNode.perv = newNode
+    // and size++ 
+    insertAt(index:number, data:T){
+        if(index <0 || index > this.size) return null;
+        if(index == 0) this.addToStart(data);
+        if(index == this.size) this.addToEnd(data);
+
+        const newNode = new DoublyListNode(data)
+        const beforeNode = this.getAtIndex(index-1)
+        const afterNode = beforeNode!.next;
+
+        newNode.prev = beforeNode
+        newNode.next = afterNode
+        beforeNode!.next = newNode;
+        afterNode!.prev = newNode;
+
+        this.size++
+        return true;
+    }
 }
