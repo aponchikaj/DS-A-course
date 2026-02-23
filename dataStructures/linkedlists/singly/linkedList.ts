@@ -268,7 +268,6 @@ class SinglyLinkedList<T> {
 
         return;
     }
-
 }
 
 const list = new SinglyLinkedList<number>()

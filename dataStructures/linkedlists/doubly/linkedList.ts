@@ -138,12 +138,23 @@ class DoublyLinkedList<T> {
     // and return current
     getAtIndex(index:number){
         if(index <0 || index >= this.size) return null;
-        let current = this.head
-        for(let i=0;i<index;i++){
-            current = current!.next;
+        
+        let middle = Math.floor(this.size/2)
+
+        let current;
+
+        if(index < middle){
+            current = this.head
+            for(let i=0;i<index;i++){
+                current = current!.next;
+            }
+        }else{
+            current = this.tail
+            for (let i = this.size - 1; i > index; i--) {
+                current = current!.prev;
+            }
         }
 
-        console.log(current)
         return current;
     }
 
@@ -229,4 +240,25 @@ class DoublyLinkedList<T> {
         this.size--
         return true;
     }
+
+    peekHead(){
+        if(!this.head){
+            console.log("Invalid head.")
+            return false;
+        }
+
+        console.log(this.head)
+        return this.head
+    }
+    
+    peekTail(){
+        if(!this.tail){
+            console.log("Invalid head.")
+            return false;
+        }
+
+        console.log(this.tail)
+        return this.tail
+    }
 }
+
