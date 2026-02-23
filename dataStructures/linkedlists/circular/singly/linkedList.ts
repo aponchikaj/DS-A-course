@@ -158,4 +158,31 @@ class SinglyCircularLinkedList<T>{
 
         current.next = this.head
     }
+
+    // delete by value function takes value:T as parameter.
+    // we check if head is valid
+    // then if head.data equals value then we can use deleteAtStart function and return;
+    // after we create variable named current which equals this.head
+    // and use while loop while current.next doesnt equal this head
+    // in loop if current.next.data == value then current.next = current.next.next and return
+    // and outside if statement we get current from one to another node
+    deleteByValue(value:T){
+        if(!this.head) return null;
+
+        if(this.head.data == value){
+            this.deleteAtStart()
+            return;
+        }
+
+        let current = this.head
+        while(current.next !== this.head){
+            if(current.next!.data == value){
+                current.next = current.next?.next!
+                return;
+            }
+            current = current.next!;
+        }
+    }
+
+    
 }
