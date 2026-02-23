@@ -112,5 +112,30 @@ class SinglyCircularLinkedList<T>{
         current!.next = newNode;
     }
 
+    // we check if we have valid head and valid list.
+    // then we check if head.next is head
+    // if it is then head = null
+    // then we create current variable that is head
+    // while current.next doesnt equal head then get from one to another node till end
+    // then current.next - last node is head.next 
+    // and head is head.next
+    // so head is gettin hidden and deleted.
+    deleteAtStart(){
+        if(!this.head) return null;
+
+        if(this.head.next==this.head){
+            this.head = null;
+            return;
+        }
+
+        let current = this.head;
+        while(current.next !== this.head){
+            current = current.next!
+        }
+
+        current.next = this.head.next;
+        this.head=this.head.next
+    }
+
     
 }
