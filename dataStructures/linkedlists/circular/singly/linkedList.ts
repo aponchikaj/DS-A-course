@@ -184,5 +184,24 @@ class SinglyCircularLinkedList<T>{
         }
     }
 
-    
+    // search function takes value parameter
+    // first we check if head is valid. if its not we return null
+    // we create variable current = head
+    // then we create while loop while true
+    // while true we check current data if it equals value in loop if it does we return true
+    // below we get current variable to next node
+    // and if current variable equals  head then we couldnt find value and we break loop
+    // and below loop we return false that means we couldnt find value
+    search(value:T){
+        if(!this.head) return null;
+
+        let current = this.head;
+        while(true){
+            if(current.data == value) return true;
+            current = current.next!;
+            if(current == this.head) break;
+        }
+
+        return false
+    }
 }
