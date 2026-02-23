@@ -137,5 +137,25 @@ class SinglyCircularLinkedList<T>{
         this.head=this.head.next
     }
 
-    
+    //delete at end deletes tail of list
+    // so if we dont have head we return null
+    // if head.next equals head then head becomes null
+    // after we create current which equals head
+    // while current.next.next doesnt equal head move current node forward
+    // current.next equals head
+    deleteAtEnd(){
+        if(!this.head) return null;
+
+        if(this.head.next == this.head){
+            this.head = null
+            return;
+        }
+
+        let current = this.head;
+        while(current.next!.next !== this.head){
+            current = current.next!
+        }
+
+        current.next = this.head
+    }
 }
