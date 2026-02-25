@@ -12,6 +12,5 @@ class LinkedQueue<T>{
     private head:QNode<T> | null = null;
     private tail:QNode<T> | null = null;
     private length: number = 0;
-
     
 }
