@@ -17,4 +17,15 @@ class ArrayQueue<T> {
     isEmpty(){
         return this.data.length === 0 ? true : false
     }
+
+    search(data:any){
+        for(let i =0;i<this.data.length;i++){
+            if(this.data[i] == data){
+                return true
+            }
+        }
+
+        return false
+    }
 }
+
