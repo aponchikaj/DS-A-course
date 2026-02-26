@@ -3,41 +3,44 @@ class SNode<T>{
     next: SNode<T> | null = null;
 
     constructor(data:T){
-        this.data = data;
+        this.data=data;
     }
 }
 
 class LinkedStack<T>{
-    private head:SNode<T> | null = null;
-    private size:number = 0
+    head: SNode<T> | null = null;
+    length: number = 0;
 
     push(data:T){
         const newNode = new SNode(data)
 
-        newNode.next = this.head
+        if(this.head){
+            newNode.next = this.head
+        }
         this.head = newNode
-        this.size++
+        this.length++
     }
 
     pop(){
-        if(!this.head){
-            return "Stack Underflowed!"
-        }
+        if(!this.head) return null;
 
         const poppedData = this.head.data
 
         this.head = this.head.next
 
-        this.size--
-        return poppedData;
+        this.length--
+        return poppedData
     }
 
     peek(){
-        return this.head === null;
+        return this.head?.data
     }
 
-    sizeOfNodes(){
-        return this.size;
+    size(){
+        return this.length
+    }
+
+    isEmpty(){
+        if(!this.head) return true
     }
 }
-
