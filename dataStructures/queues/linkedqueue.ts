@@ -29,4 +29,19 @@ class LinkedQueue<T> {
         this.length++
         return;
     }
+
+    dequeue(){
+        if(!this.head) return null;
+        const deletedData = this.head.data
+        if(this.head === this.tail){
+            this.head = null
+            this.tail = null
+        }else{
+            this.head = this.head.next
+            this.head!.prev = null
+        }
+
+        this.length--
+        return deletedData
+    }
 }
