@@ -42,6 +42,20 @@ class LinkedStack<T>{
         const poppedData = this.head.data
         this.head = this.head.next;
 
+        this.length--
+
         return poppedData
+    }
+
+    // peek function
+    // first check if we have head
+    // then return head.data
+    peek(){
+        if(!this.head) return null;
+        return this.head?.data
+    }
+
+    isEmpty(){
+        return !this.head ?true :false
     }
 }
