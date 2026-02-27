@@ -27,5 +27,22 @@ class hashTable<T> {
         return total;
     }
 
-    
+    // set function takes key and value parameters
+    // then we create 3 variables
+    // 1 index where we use hash function and pass key as parameter
+    // that gives us the total value that was in hash function.
+    // then we create data variable that equals data at index of that hash function
+    // then we create exists variable where we are searching if we have that key in that index
+    // then if it exists it changes value of that array so exists[0] is key and 1 is value
+    // and if we dont we push new data to  that index
+    set(key:string,value:T){
+        const index = this.hash(key);
+        const data = this.data[index]
+        const exists = data.find(([k])=>k===key);
+        if(exists){
+            exists[1] = value
+        }else{
+            data.push([key,value])
+        }
+    }
 }
