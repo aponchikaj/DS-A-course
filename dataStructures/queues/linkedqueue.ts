@@ -44,4 +44,12 @@ class LinkedQueue<T> {
         this.length--
         return deletedData
     }
+
+    peek(){
+        return this.head?.data
+    }
+
+    size(){
+        return this.length
+    }
 }
