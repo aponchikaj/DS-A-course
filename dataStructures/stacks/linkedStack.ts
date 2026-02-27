@@ -1,46 +1,34 @@
-class SNode<T>{
+class SNode<T> {
     data:T
     next: SNode<T> | null = null;
 
     constructor(data:T){
-        this.data=data;
+        this.data = data;
     }
 }
 
 class LinkedStack<T>{
-    head: SNode<T> | null = null;
-    length: number = 0;
+    private head: SNode<T> | null = null;
+    private length: number = 0;
 
+    // push method in stack using linked list
+    // we create new node
+    // then check if we already have head
+    // if we dont have head we assign newNode to head
+    // if we have head then newNode next is head and head becomes newnode after
     push(data:T){
         const newNode = new SNode(data)
 
-        if(this.head){
+        if(!this.head){
+            this.head = newNode
+        }else{
             newNode.next = this.head
+            this.head = newNode
         }
-        this.head = newNode
+
         this.length++
+        return;
     }
 
-    pop(){
-        if(!this.head) return null;
 
-        const poppedData = this.head.data
-
-        this.head = this.head.next
-
-        this.length--
-        return poppedData
-    }
-
-    peek(){
-        return this.head?.data
-    }
-
-    size(){
-        return this.length
-    }
-
-    isEmpty(){
-        if(!this.head) return true
-    }
 }
