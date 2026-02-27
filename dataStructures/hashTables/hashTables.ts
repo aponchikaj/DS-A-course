@@ -45,4 +45,29 @@ class hashTable<T> {
             data.push([key,value])
         }
     }
+
+    // get function gets key as parameter
+    // then we get index with hash
+    // and get data with that index
+    // so we find that key from data index and return value of it but if we didnt found it we return null
+    get(key:string){
+        const index = this.hash(key)
+        const data = this.data[index]
+        return data.find(([k])=>k===key)?.[1] ?? null;
+    }
+
+    // so delete function has key parameter
+    // we get index with hash function
+    // and get data[index]
+    // then we find item
+    // if we didnt find it then it returns false
+    // lastly we splice item from data and return true.
+    delete(key:string){
+        const index = this.hash(key);
+        const data = this.data[index]
+        const item = data.findIndex(([k])=> k === key);
+        if(item === -1) return false;
+        data.splice(item,1)
+        return true
+    }
 }
