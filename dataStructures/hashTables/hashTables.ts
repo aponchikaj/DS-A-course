@@ -1,6 +1,8 @@
 class hashTable<T> {
     private data: Array<Array<[string,T]>>;
     private size:number = 0
+    private count: number = 0;
+    private LOAD_THRESHOLD = 0.75;
 
     constructor(size:number = 50){
         this.size = size
@@ -35,6 +37,9 @@ class hashTable<T> {
     // then we create exists variable where we are searching if we have that key in that index
     // then if it exists it changes value of that array so exists[0] is key and 1 is value
     // and if we dont we push new data to  that index
+    // then we increase count by one and if count / size is more then LOAD_THRESHOLD(0.75)
+    // then we make size * 2 of table
+    // using function resize
     set(key:string,value:T){
         const index = this.hash(key);
         const data = this.data[index]
@@ -43,6 +48,31 @@ class hashTable<T> {
             exists[1] = value
         }else{
             data.push([key,value])
+        }
+
+        this.count++
+        if(this.count / this.size > this.LOAD_THRESHOLD) {
+            this.resize(this.size*2)
+        }
+    }
+    
+    // resize function - takes newSize as parameter
+    // we make variable old and assign table there
+    // then we make size variable which is newsize - parameter
+    // then we make this.data out table equaled new Array(size).fill(null).map(()=>[])
+    // so we make new array
+    // then we use for loop get bucket from each table index 
+    // then we make nested loop get key and value from bucket
+    // then we set key and value to new sized array
+    resize(newsize:number){
+        const old = this.data
+        const size = newsize
+        this.data = new Array(size).fill(null).map(()=>[])
+
+        for(const bucket of old){
+            for(const [k,v] of bucket){
+                this.set(k,v);
+            }
         }
     }
 
